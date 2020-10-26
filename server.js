@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const path = require('path')
 const PORT = process.env.PORT || 3000
 
 
@@ -14,8 +15,11 @@ const users = [
     }
 ]
 
+app.set('views', path.join(__dirname, 'views'))
+
 app.get("/", (req, res, next) => {
-    res.send('test heroku')
+    console.log(path.join(__dirname, 'views', 'index.html'));
+    res.sendFile(path.join(__dirname, 'views', 'index.html'))
 })
 
 app.get("/users", (req, res, next) => {
